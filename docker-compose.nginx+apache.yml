@@ -1,0 +1,39 @@
+{
+    "version": "2",
+    "services": {
+        "postgres": {
+            "image": "postgres"
+        },
+        "apache": {
+            "build": {
+                "context": ".",
+                "dockerfile": "Dockerfile-apache+postgres"
+            },
+            "volumes": [
+                "./:/var/www/html"
+            ],
+            "links": [
+                "postgres"
+            ],
+            "depends_on": [
+                "postgres"
+            ]
+        },
+        "nginx": {
+            "image": "nginx",
+            "volumes": [
+                "./:/var/www",
+                "./nginx.apache.conf:/etc/nginx/nginx.conf:ro"
+            ],
+            "links": [
+                "apache"
+            ],
+            "ports": [
+                "80:80"
+            ],
+            "depends_on": [
+                "apache"
+            ]
+        }
+    }
+}

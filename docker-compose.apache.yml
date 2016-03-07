@@ -1,0 +1,26 @@
+{
+    "version": "2",
+    "services": {
+        "postgres": {
+            "image": "postgres"
+        },
+        "apache": {
+            "build": {
+                "context": ".",
+                "dockerfile": "Dockerfile-apache+postgres"
+            },
+            "volumes": [
+                "./:/var/www/html"
+            ],
+            "ports": [
+                "80:80"
+            ],
+            "links": [
+                "postgres"
+            ],
+            "depends_on": [
+                "postgres"
+            ]
+        }
+    }
+}

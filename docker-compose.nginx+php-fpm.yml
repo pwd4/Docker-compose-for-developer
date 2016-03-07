@@ -1,0 +1,39 @@
+{
+    "version": "2",
+    "services": {
+        "postgres": {
+            "image": "postgres"
+        },
+        "php-fpm": {
+            "build": {
+                "context": ".",
+                "dockerfile": "Dockerfile-php-fpm+postgres"
+            },
+            "volumes": [
+                "./:/var/www/html"
+            ],
+            "links": [
+                "postgres"
+            ],
+            "depends_on": [
+                "postgres"
+            ]
+        },
+        "nginx": {
+            "image": "nginx",
+            "volumes": [
+                "./:/var/www",
+                "./nginx.php-fpm.conf:/etc/nginx/nginx.conf:ro"
+            ],
+            "links": [
+                "php-fpm"
+            ],
+            "ports": [
+                "80:80"
+            ],
+            "depends_on": [
+                "php-fpm"
+            ]
+        }
+    }
+}
