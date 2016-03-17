@@ -1,8 +1,16 @@
 {
     "version": "2",
+    "volumes": {
+        "postgres_data": {
+            "driver": "local"
+        }
+    },
     "services": {
         "postgres": {
-            "image": "postgres"
+            "image": "postgres",
+            "volumes": [
+                "postgres_data:/var/lib/postgresql/data"
+            ]
         },
         "apache": {
             "build": {
