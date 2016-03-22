@@ -28,7 +28,7 @@
             ]
         },
         "nginx": {
-            "image": "nginx",
+            "image": "nginx:alpine",
             "volumes": [
                 "./:/var/www",
                 "./nginx.apache.conf:/etc/nginx/nginx.conf:ro"
