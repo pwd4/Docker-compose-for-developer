@@ -3,6 +3,9 @@
     "volumes": {
         "postgres_data": {
             "driver": "local"
+        },
+        "mysql_data": {
+            "driver": "local"
         }
     },
     "services": {
@@ -12,10 +15,19 @@
                 "postgres_data:/var/lib/postgresql/data"
             ]
         },
+        "mysql": {
+            "image": "mysql",
+            "environment": {
+                "MYSQL_ALLOW_EMPTY_PASSWORD": "true"
+            },
+            "volumes": [
+                "mysql_data:/var/lib/mysql"
+            ]
+        },
         "apache": {
             "build": {
                 "context": ".",
-                "dockerfile": "Dockerfile-apache+postgres"
+                "dockerfile": "Dockerfile-apache"
             },
             "volumes": [
                 "./:/var/www/html"
@@ -24,10 +36,12 @@
                 "80:80"
             ],
             "links": [
-                "postgres"
+                "postgres",
+                "mysql"
             ],
             "depends_on": [
-                "postgres"
+                "postgres",
+                "mysql"
             ]
         }
     }
