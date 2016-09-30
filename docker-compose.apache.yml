@@ -1,12 +1,8 @@
 {
     "version": "2",
     "volumes": {
-        "postgres_data": {
-            "driver": "local"
-        },
-        "mysql_data": {
-            "driver": "local"
-        }
+        "postgres_data": {},
+        "mysql_data": {}
     },
     "services": {
         "postgres": {
@@ -34,10 +30,6 @@
             ],
             "ports": [
                 "80:80"
-            ],
-            "links": [
-                "postgres",
-                "mysql"
             ],
             "depends_on": [
                 "postgres",

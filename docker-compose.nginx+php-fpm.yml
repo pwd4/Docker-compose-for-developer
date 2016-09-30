@@ -1,12 +1,8 @@
 {
     "version": "2",
     "volumes": {
-        "postgres_data": {
-            "driver": "local"
-        },
-        "mysql_data": {
-            "driver": "local"
-        }
+        "postgres_data": {},
+        "mysql_data": {}
     },
     "services": {
         "postgres": {
@@ -32,10 +28,6 @@
             "volumes": [
                 "./:/var/www/html"
             ],
-            "links": [
-                "postgres",
-                "mysql"
-            ],
             "depends_on": [
                 "postgres",
                 "mysql"
@@ -46,9 +38,6 @@
             "volumes": [
                 "./:/var/www",
                 "./nginx.php-fpm.conf:/etc/nginx/nginx.conf:ro"
-            ],
-            "links": [
-                "php-fpm"
             ],
             "ports": [
                 "80:80"
