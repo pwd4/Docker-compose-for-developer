@@ -1,4 +1,4 @@
-# Docker Compose files for PHP development
+# Simple Docker Compose files for PHP development
 
 ## Apache + PostgreSQL + MySQL
     docker-compose -f docker-compose.apache.yml up
