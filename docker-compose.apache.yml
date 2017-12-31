@@ -8,7 +8,7 @@
         "postgres": {
             "image": "postgres:alpine",
             "volumes": [
-                "postgres_data:/var/lib/postgresql/data"
+                "postgres_data:/var/lib/postgresql/data/"
             ]
         },
         "mysql": {
@@ -17,16 +17,16 @@
                 "MYSQL_ALLOW_EMPTY_PASSWORD": "true"
             },
             "volumes": [
-                "mysql_data:/var/lib/mysql"
+                "mysql_data:/var/lib/mysql/"
             ]
         },
         "apache": {
             "build": {
-                "context": ".",
+                "context": "./",
                 "dockerfile": "Dockerfile-apache"
             },
             "volumes": [
-                "./:/var/www/html"
+                "./:/var/www/html/"
             ],
             "ports": [
                 "80:80"
