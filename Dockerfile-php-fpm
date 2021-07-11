@@ -1,5 +1,4 @@
-FROM php:fpm
+FROM php:fpm-alpine
 
-RUN apt-get update \
-  && apt-get install --yes --no-install-recommends libpq-dev \
+RUN apk add --no-cache postgresql-dev \
   && docker-php-ext-install pdo_pgsql pdo_mysql

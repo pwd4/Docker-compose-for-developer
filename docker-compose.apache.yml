@@ -1,5 +1,4 @@
 {
-    "version": "3",
     "volumes": {
         "postgres_data": {},
         "mysql_data": {}
@@ -7,6 +6,9 @@
     "services": {
         "postgres": {
             "image": "postgres:alpine",
+            "environment": {
+                "POSTGRES_HOST_AUTH_METHOD": "trust"
+            },
             "volumes": [
                 "postgres_data:/var/lib/postgresql/data/"
             ]
